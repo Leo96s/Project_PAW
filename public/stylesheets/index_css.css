@@ -8,7 +8,7 @@
 body{
     display:flex;
     align-items: center;
-    justify-content:center;
+    margin-left: 10%;
     min-height: 100vh;
     background-image:url("https://cdn.dlron.us/static/dealer-16275/Clothing_Donation_2.png");
     background-repeat: no-repeat;
