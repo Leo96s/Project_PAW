@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "poppins", sans-serif;
+}
+
+body {
+  background-color: #e8d5c7;
+}
+
+.container-fluid img{
+  width: 50px;
+  height: 50px;
+}
+
+/* Parent container for both column and image */
+.about_us_container {
+  display: flex;
+  justify-content: space-between; /* Align items at opposite ends */
+  min-height: 100vh;
+}
+
+/* Column styles */
+.about_us_column {
+  flex: 1; /* Take up available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2.5%;
+  color: black;
+  position: relative;
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  backdrop-filter: blur(55px);
+  padding: 20px;
+}
+
+/* Image styles */
+.about_us_image {
+  width: 65%;
+  background-image: url("https://sojo.net/sites/default/files/blog/34fae492-24ef-4397-9b37-198fded3ca00.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.about_us_column h1 {
+  font-size: 55px;
+  font-variant: small-caps;
+}
+
+button {
+  width: 100%;
+  height: 40px;
+  border-radius: 40px;
+  background-color: rgba(255, 255, 255, 1);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.4s ease;
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
