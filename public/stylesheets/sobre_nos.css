@@ -45,10 +45,10 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  transition: all 0.4s ease;
 }
 .about_us_image:hover {
   transform: rotate(10deg);
-  transition: all 0.4s ease;
 }
 
 .about_us_column h1 {
@@ -71,4 +71,33 @@ button {
 
 button:hover {
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar {
+  padding: 0px;
+  border-bottom: 3px groove #c5b1a5;
+
+  div {
+    background-color: #bfac9f;
+  }
+}
+
+.nav-item {
+  transition: all 0.4s ease;
+}
+.nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.logo{
+  transition: all 0.4s ease;
+  border-right: 3px groove #c5b1a5;
+}
+
+.logo:hover{
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.logo img:hover{
+  transform: rotate(10deg);
 }
