@@ -1,0 +1,167 @@
+<div class="body">
+  <div class="container">
+    <h1>Registar Como Doador</h1>
+    <form #form="ngForm">
+      <div class="input-container">
+        <div class="inputbox">
+          <ion-icon name="lock-closed-outline"></ion-icon>
+          <label for="foto">Foto Perfil</label>
+          <app-upload-file (fileUploaded)="onFileUploaded($event)" [tempName]="doador.name"
+            id="fileUpload"></app-upload-file>
+        </div>
+        <div class="inputbox">
+          <ion-icon name="lock-closed-outline"></ion-icon>
+          <input type="text" id="name" [(ngModel)]="doador.name" name="name" required minlength="2" #name="ngModel" />
+          <label for="name">Nome</label>
+
+          <div *ngIf="name.invalid && (name.dirty || name.touched)">
+            <div *ngIf="name.errors && name.errors['required']" class="alert alert-danger">
+              Nome é obrigatório.
+            </div>
+            <div *ngIf="name.errors && name.errors['minlength']" class="alert alert-danger">
+              Nome precisa ter pelo menos 2 caracteres.
+            </div>
+          </div>
+        </div>
+        <div class="inputbox">
+          <ion-icon name="mail-outline"></ion-icon>
+          <input type="email" id="email" [(ngModel)]="doador.email" name="email" required email #email="ngModel" />
+          <label for="email">Email</label>
+
+          <div *ngIf="email.invalid && (email.dirty || email.touched)">
+            <div *ngIf="email.errors && email.errors['required']" class="alert alert-danger">
+              O Email é obrigatório.
+            </div>
+            <div *ngIf="email.errors && email.errors['email']" class="alert alert-danger">
+              Email inválido.
+            </div>
+          </div>
+        </div>
+        <div class="inputbox">
+          <ion-icon name="lock-closed-outline"></ion-icon>
+          <input type="password" id="password" [(ngModel)]="doador.password" name="password" #password="ngModel"
+            required minlength="8" />
+          <label for="password">Password</label>
+
+          <div *ngIf="password.invalid && (password.dirty || password.touched)">
+            <div *ngIf="password.errors && password.errors['required']" class="alert alert-danger">
+              A password é obrigatória.
+            </div>
+            <div *ngIf="password.errors && password.errors['minlength']" class="alert alert-danger">
+              A password deve ter pelo menos 8 caracteres.
+            </div>
+          </div>
+        </div>
+        <div class="inputbox">
+          <input type="text" id="nif" [(ngModel)]="doador.nif" name="nif" required pattern="^\d{9}$" #nif="ngModel" />
+          <label for="nif">NIF</label>
+
+          <div *ngIf="nif.invalid && (nif.dirty || nif.touched)">
+            <div *ngIf="nif.errors && nif.errors['required']" class="alert alert-danger">
+              O NIF é obrigatório.
+            </div>
+            <div *ngIf="nif.errors && nif.errors['pattern']" class="alert alert-danger">
+              Por favor, insira um NIF válido com 9 dígitos.
+            </div>
+          </div>
+        </div>
+        <div class="inputbox">
+          <input type="text" id="phone" [(ngModel)]="doador.phone" name="phone" required pattern="^\d{9}$"
+            #phone="ngModel" />
+          <label for="phone">Telemóvel</label>
+
+          <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+            <div *ngIf="phone.errors && phone.errors['required']" class="alert alert-danger">
+              O número de telemóvel é obrigatório.
+            </div>
+            <div *ngIf="phone.errors && phone.errors['pattern']" class="alert alert-danger">
+              Por favor, insira um número de telemóvel válido com 9 dígitos.
+            </div>
+          </div>
+        </div>
+        <div class="inputbox">
+          <input type="number" id="age" [(ngModel)]="doador.age" name="age" #age="ngModel" required min="18"
+            max="120" />
+          <label for="age">Idade</label>
+
+          <div *ngIf="age.invalid && (age.dirty || age.touched)">
+            <div *ngIf="age.errors && age.errors['required']" class="alert alert-danger">
+              A idade é obrigatória.
+            </div>
+            <div *ngIf="age.errors && age.errors['min']" class="alert alert-danger">
+              A idade mínima é 18.
+            </div>
+            <div *ngIf="age.errors && age.errors['max']" class="alert alert-danger">
+              A idade máxima é 120.
+            </div>
+          </div>
+        </div>
+
+        <div class="inputbox">
+          <ion-icon name="mail-outline"></ion-icon>
+          <select id="gender" [(ngModel)]="doador.gender" name="gender" #gender="ngModel" required>
+            <option value="" disabled selected></option>
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+            <option value="O">Outro</option>
+          </select>
+          <div class="arrow"></div>
+          <label for="gender">Sexo</label>
+
+          <div *ngIf="gender.invalid && (gender.dirty || gender.touched)">
+            <div *ngIf="gender.errors && gender.errors['required']" class="alert alert-danger">
+              Deve preencher o campo.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="inputbox">
+        <input type="text" id="city" [(ngModel)]="doador.city" name="city" required minlength="2" #city="ngModel" />
+        <label for="city">Cidade</label>
+
+        <div *ngIf="city.invalid && (city.dirty || city.touched)">
+          <div *ngIf="city.errors && city.errors['required']" class="alert alert-danger">
+            A cidade é obrigatória.
+          </div>
+          <div *ngIf="city.errors && city.errors['minlength']" class="alert alert-danger">
+            A cidade deve ter pelo menos 2 caracteres.
+          </div>
+        </div>
+      </div>
+
+      <div class="inputbox">
+        <input id="address" [(ngModel)]="doador.address" name="address" required minlength="2" #address="ngModel" />
+        <label for="address">Morada</label>
+
+        <div *ngIf="address.invalid && (address.dirty || address.touched)">
+          <div *ngIf="address.errors && address.errors['required']" class="alert alert-danger">
+            A morada é obrigatória.
+          </div>
+          <div *ngIf="address.errors && address.errors['minlength']" class="alert alert-danger">
+            A morada deve ter pelo menos 2 caracteres.
+          </div>
+        </div>
+      </div>
+
+      <div class="inputbox">
+        <input type="text" id="codigoAngariadorIndicado" [(ngModel)]="doador.codigoAngariadorIndicado"
+          name="codigoAngariadorIndicado" #codigoAngariadorIndicado="ngModel" />
+        <label for="codigoAngariadorIndicado">Código do Angariador (opcional)</label>
+      </div>
+      <button type="button" [disabled]="form.invalid ||  doador.image === undefined" (click)="criarDoador()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-add"
+          viewBox="0 0 16 16">
+          <path
+            d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
+          <path
+            d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" />
+        </svg>Registar
+      </button>
+    </form>
+
+    @if (this.registoError!=='') {
+    <ngb-alert class="error" style="margin-top: 10px;" type="danger"
+      [dismissible]="false"><strong>{{this.registoError}}</strong></ngb-alert>
+    }
+  </div>

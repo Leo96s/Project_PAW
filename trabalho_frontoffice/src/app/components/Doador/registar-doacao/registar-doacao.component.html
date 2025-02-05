@@ -1,0 +1,79 @@
+<div class="main">
+  <div class="component1">
+    <app-barra-navegacao></app-barra-navegacao>
+  </div>
+  <div class="component2">
+    <div class="container_table">
+      <div class="form">
+        <h1>Formulário de Doação</h1>
+        <form #form="ngForm">
+        <div id="itemsContainer">
+          <label for="fotos">Fotos das Roupas</label>
+          <app-upload-files
+            (filesUploaded)="onFilesUploaded($event)"
+            [tempName]="doacao.nif"
+            id="filesUpload"
+          ></app-upload-files>
+          <br />
+          <div *ngFor="let peca of doacao.pecaRoupa; let i = index">
+            <div class="form-group item-group">
+              <label for="tipo">Tipo de Roupa:</label>
+              <select [(ngModel)]="peca.tipo" name="tipo{{ i }}" required minlength="2" #name="ngModel">
+                <option value="" disabled selected>-- Selecione --</option>
+                <option value="T-shirt">T-shirt</option>
+                <option value="Camisola">Camisola</option>
+                <option value="Calças">Calças</option>
+                <option value="Casaco">Casaco</option>
+                <option value="Vestido">Vestido</option>
+                <option value="Fato">Fato</option>
+                <option value="Sapatos">Sapatos</option>
+                <option value="Acessórios">Acessórios</option>
+              </select>
+
+              <label for="qualidade">Qualidade da Roupa:</label>
+              <select
+                [(ngModel)]="peca.qualidade"
+                name="qualidade{{ i }}"
+                required minlength="2" #name="ngModel"
+              >
+                <option value="" disabled selected>-- Selecione --</option>
+                <option value="Excelente">Excelente</option>
+                <option value="Boa">Boa</option>
+                <option value="Aceitável">Aceitável</option>
+              </select>
+
+              <label for="quantidade">Quantidade de Peças:</label>
+              <input
+                type="number"
+                [(ngModel)]="peca.quantidade"
+                name="quantidade{{ i }}"
+                min="1"
+                required minlength="2" #name="ngModel"
+              />
+              <button type="button" class="btn btn-secondary" (click)="removePecaRoupa(i)">
+                Remover
+              </button>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-secondary" (click)="addPecaRoupa()">Adicionar Mais</button>
+        <div class="form-group">
+          <label for="entidade">Entidade Beneficiária:</label>
+          <select
+            [(ngModel)]="doacao.nomeEntidade"
+            name="nomeEntidade"
+            required minlength="2" #name="ngModel"
+          >
+            <option value="" disabled selected>-- Selecione --</option>
+            <option *ngFor="let entidade of entidades" [value]="entidade.name">
+              {{ entidade.name }}
+            </option>
+          </select>
+        </div>
+        <button type="button" class="btn btn-primary"  [disabled]="form.invalid ||  doacao.images ===undefined"
+         (click)="criarDoacao()">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

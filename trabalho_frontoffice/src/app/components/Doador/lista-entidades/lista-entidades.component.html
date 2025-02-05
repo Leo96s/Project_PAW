@@ -1,0 +1,66 @@
+<app-barra-navegacao></app-barra-navegacao>
+
+<div class="container">
+  <h1>Lista de Entidades</h1>
+
+  <app-filtrar-entidades (onFiltrosAplicados)="receberFiltros($event)"></app-filtrar-entidades>
+
+  <h2>Entidades Registradas</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Cidade</th>
+        <th scope="col">Endereço</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let entidade of entidadesFiltradas">
+        <td>
+          <a href="#" data-bs-toggle="modal" [attr.data-bs-target]="'#entidadeModal' + entidade._id">
+            {{ entidade.name }}
+          </a>
+        </td>
+        <td>{{ entidade.city }}</td>
+        <td>{{ entidade.address }}</td>
+      </tr>
+      <tr *ngIf="entidadesFiltradas?.length === 0">
+        <td colspan="2">Nenhuma entidade registrada</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal para detalhes da entidade -->
+  <div *ngFor="let entidade of entidades" class="modal fade" [id]="'entidadeModal' + entidade._id" tabindex="-1"
+    aria-labelledby="entidadeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="entidadeModalLabel">
+            Detalhes da Entidade - {{ entidade.name }}
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Nome:</strong> {{ entidade.name }}</p>
+          <p><strong>Email:</strong> {{ entidade.email }}</p>
+          <p><strong>NIF:</strong> {{ entidade.nif }}</p>
+          <p><strong>Telefone:</strong> {{ entidade.phone }}</p>
+          <p><strong>Cidade:</strong> {{ entidade.city }}</p>
+          <p><strong>Endereço:</strong> {{ entidade.address }}</p>
+          <p><strong>Missão:</strong> {{ entidade.missao }}</p>
+          <p><strong>Atividades:</strong> {{ entidade.atividades }}</p>
+          <p><strong>Website:</strong> <a [href]="entidade.website" target="_blank">{{ entidade.website }}</a></p>
+          <p><strong>Imagens:</strong></p>
+          <div *ngIf="entidade.images?.length">
+            <img *ngFor="let image of entidade.images" src="http://localhost:3000/api/v1/i/get/{{ image }}"
+              alt="Imagem Entidade" class="img-thumbnail" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

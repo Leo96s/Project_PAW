@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="metric" id="metric5">
+    <script>
+      var xValue = JSON.parse(' <%- JSON.stringify(Object.keys(doacoesDiaMes)) %>');
+      var yValue = JSON.parse('<%- JSON.stringify(Object.values(doacoesDiaMes)) %>');
+
+      var trace1 = {
+        x: xValue,
+        y: yValue,
+        type: 'scatter'
+      };
+
+      var data = [trace1];
+
+      var layout = {
+        title: 'Doações por Dia<br>no mês atual',
+        xaxis: {
+          title: 'Dia',
+        },
+        yaxis: {
+          title: 'Doações',
+        }
+      };
+
+      var config = { responsive: true };
+
+      Plotly.newPlot('metric5', data, layout, config);
+    </script>
+  </div>
+</body>
+
+</html>

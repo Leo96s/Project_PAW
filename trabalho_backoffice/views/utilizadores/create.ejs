@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registar Utilizador</title>
+  <link rel='stylesheet' href='/stylesheets/gestao_utilizadores.css' />
+</head>
+
+<body>
+  <div class="parent">
+    <div class="component1"> <%- include('navegacao/header.ejs') %></div>
+    <div class="component2">
+      <div class="container_table">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="doador-tab" data-bs-toggle="tab" data-bs-target="#doador-tab-pane"
+              type="button" role="tab" aria-controls="doador-tab-pane" aria-selected="true">
+              Doador
+            </button>
+          </li>
+          <% if(userPosition=='Admin' ) { %>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="funcionario-tab" data-bs-toggle="tab" data-bs-target="#funcionario-tab-pane"
+                type="button" role="tab" aria-controls="funcionario-tab-pane" aria-selected="false">
+                Funcionário
+              </button>
+            </li>
+            <% } %>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="entidade-tab" data-bs-toggle="tab" data-bs-target="#entidade-tab-pane"
+                  type="button" role="tab" aria-controls="entidade-tab-pane" aria-selected="false">
+                  Entidade Beneficiária
+                </button>
+              </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="doador-tab-pane" role="tabpanel" aria-labelledby="doador-tab"
+            tabindex="0">
+            <h1>Registar Novo Doador</h1>
+            <form action="/utilizador/save" method="post" enctype="multipart/form-data">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Foto tipo Passe*</td>
+                    <td><input type="file" name="file" required></td>
+                  </tr>
+                  <tr>
+                    <td>Nome*</td>
+                    <td><input type="text" name="name" required minlength="2"
+                        title="Por favor, insira mais do que 2 caracteres"></td>
+                  </tr>
+                  <tr>
+                    <td>Email*</td>
+                    <td><input type="email" name="email" required
+                        title="Por favor, insira um endereço de email válido." /></td>
+                  </tr>
+                  <tr>
+                    <td>Password*</td>
+                    <td><input type="password" name="password" required minlength="8"
+                        title="A password deve ter pelo menos 8 caracteres."></td>
+                  </tr>
+                  <tr>
+                    <td>Nif*</td>
+                    <td><input type="text" name="nif" required pattern="\d{9}"
+                        title="Por favor, insira um NIF válido com 9 dígitos."></td>
+                  </tr>
+                  <tr>
+                    <td>Telemóvel*</td>
+                    <td><input type="text" name="phone" required pattern="\d{9}"
+                        title="Por favor, insira um número de telefone válido com 9 dígitos."></td>
+                  </tr>
+                  <tr>
+                    <td>Idade*</td>
+                    <td><input type="number" name="age" required min="18" max="120"
+                        title="Por favor, insira uma idade válida entre 18 e 120."></td>
+                  </tr>
+                  <tr>
+                    <td>Sexo</td>
+                    <td>
+                      <select name="gender">
+                        <option value="M">Masculino</option>
+                        <option value="F">Feminino</option>
+                        <option value="O">Outro</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Cidade*</td>
+                    <td><input type="text" name="city" required minlength="2"
+                        title="Por favor, insira uma cidade válida"></td>
+                  <tr>
+                    <td>Morada*</td>
+                    <td><textarea name="address" required minlength="2"
+                        title="Por favor, insira uma morada válida"></textarea>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tipo</td>
+                    <td><input type="text" name="tipo" value="Doador" readonly /></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                          fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
+                          <path
+                            d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
+                          <path
+                            d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" />
+                        </svg>Salvar</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="funcionario-tab-pane" role="tabpanel" aria-labelledby="funcionario-tab"
+            tabindex="0">
+            <h1>Registar Novo Funcionário</h1>
+            <form action="/utilizador/save" method="post" enctype="multipart/form-data">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Foto tipo Passe*</td>
+                    <td><input type="file" name="file" required></td>
+                  </tr>
+                  <tr>
+                    <td>Nome*</td>
+                    <td><input type="text" name="name" required minlength="2"
+                        title="Por favor, insira mais do que 2 caracteres"></td>
+                  </tr>
+                  <tr>
+                    <td>Email*</td>
+                    <td><input type="email" name="email" required
+                        title="Por favor, insira um endereço de email válido." /></td>
+                  </tr>
+                  <tr>
+                    <td>Password*</td>
+                    <td><input type="password" name="password" required minlength="8"
+                        title="A senha deve ter pelo menos 8 caracteres."></td>
+                  </tr>
+                  <tr>
+                    <td>Nif*</td>
+                    <td><input type="text" name="nif" required pattern="\d{9}"
+                        title="Por favor, insira um NIF válido com 9 dígitos."></td>
+                  </tr>
+                  <tr>
+                    <td>Telemóvel*</td>
+                    <td><input type="text" name="phone" required pattern="\d{9}"
+                        title="Por favor, insira um número de telefone válido com 9 dígitos."></td>
+                  </tr>
+                  <tr>
+                    <td>Idade*</td>
+                    <td><input type="number" name="age" required min="18" max="120"
+                        title="Por favor, insira uma idade válida entre 18 e 120."></td>
+                  </tr>
+                  <tr>
+                    <td>Sexo*</td>
+                    <td>
+                      <select name="gender" required title="Por favor, selecione um sexo.">
+                        <option value="M">Masculino</option>
+                        <option value="F">Feminino</option>
+                        <option value="O">Outro</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Cidade*</td>
+                    <td><input type="text" name="city" required minlength="2"
+                        title="Por favor, insira uma cidade válida"></td>
+                  </tr>
+                  <tr>
+                    <td>Morada*</td>
+                    <td><textarea name="address" required minlength="2"
+                        title="Por favor, insira uma morada válida"></textarea>
+                  </tr>
+                  <tr>
+                    <td>Tipo</td>
+                    <td><input type="text" name="tipo" value="Funcionario" readonly /></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                          fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
+                          <path
+                            d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
+                          <path
+                            d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" />
+                        </svg>Salvar</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="entidade-tab-pane" role="tabpanel" aria-labelledby="entidade-tab" tabindex="0">
+            <h1>Registar Nova Entidade</h1>
+            <form action="/utilizador/save-ent" method="post" enctype="multipart/form-data">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Foto tipo Passe*</td>
+                    <td><input type="file" name="files" multiple required></td>
+                  </tr>
+                  <tr>
+                    <td>Nome*</td>
+                    <td><input type="text" name="name" required minlength="2"
+                        title="Por favor, insira mais do que 2 caracteres"></td>
+                  </tr>
+                  <tr>
+                    <td>Email*</td>
+                    <td><input type="email" name="email" required
+                        title="Por favor, insira um endereço de email válido." /></td>
+                  </tr>
+                  <tr>
+                    <td>Password*</td>
+                    <td><input type="password" name="password" required minlength="8"
+                        title="A senha deve ter pelo menos 8 caracteres."></td>
+                  </tr>
+                  <tr>
+                    <td>Telemóvel*</td>
+                    <td><input type="text" name="phone" required pattern="\d{9}"
+                        title="Por favor, insira um número de telefone válido com 9 dígitos."></td>
+                  </tr>
+                  <tr>
+                    <td>Nif*</td>
+                    <td><input type="text" name="nif" required pattern="\d{9}"
+                        title="Por favor, insira um NIF válido com 9 dígitos."></td>
+                  </tr>
+                  <tr>
+                    <td>Missão*</td>
+                    <td><textarea name="missao" required minlength="20"
+                        title="Por favor, insira uma breve descrição de pelo menos 20 caracteres"></textarea></td>
+                  </tr>
+                  <tr>
+                    <td>Atividades*</td>
+                    <td><textarea name="atividades" required minlength="20"
+                        title="Por favor, insira uma breve descrição de pelo menos 20 caracteres"></textarea></td>
+                  </tr>
+                  <tr>
+                    <td>Website*</td>
+                    <td><input type="url" name="website" required title="Por favor, insira um website válido." /></td>
+                  </tr>
+                  <tr>
+                    <td>Cidade*</td>
+                    <td><input type="text" name="city" required minlength="2"
+                        title="Por favor, insira uma cidade válida"></td>
+                  </tr>
+                  <tr>
+                    <td>Morada*</td>
+                    <td><textarea name="address" required minlength="2"
+                        title="Por favor, insira uma morada válida"></textarea>
+                  </tr>
+                  <tr>
+                    <td>Tipo</td>
+                    <td><input type="text" name="tipo" value="Entidade" readonly /></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                          fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
+                          <path
+                            d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
+                          <path
+                            d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" />
+                        </svg>Salvar</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+            <script>
+              <% if (typeof error !== 'undefined') { %>
+                alert('<%- error %>')
+                <% } %>
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>

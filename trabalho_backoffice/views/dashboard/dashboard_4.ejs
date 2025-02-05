@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="metric" id="metric4">
+    <script>
+      var xValue = JSON.parse(' <%- JSON.stringify(Object.keys(doacoesDiaSemana)) %>');
+      var yValue = JSON.parse('<%- JSON.stringify(Object.values(doacoesDiaSemana)) %>');
+
+      var trace1 = {
+        x: xValue,
+        y: yValue,
+        type: 'bar',
+        name: 'Doações por Dia da Semana',
+        marker: {
+          color: 'rgb(49,130,189)',
+          opacity: 0.7,
+        }
+      };
+
+      var data = [trace1];
+
+      var layout = {
+        title: 'Doações por Dia da Semana<br>no ano atual',
+        xaxis: {
+          tickangle: -45
+        },
+        barmode: 'group',
+      };
+
+      var config = { responsive: true };
+
+      Plotly.newPlot('metric4', data, layout, config);
+    </script>
+  </div>
+</body>
+
+</html>

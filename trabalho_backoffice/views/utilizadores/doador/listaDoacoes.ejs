@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista Utilizadores</title>
+  <link rel='stylesheet' href='/stylesheets/gestao_utilizadores.css' />
+</head>
+
+<body>
+  <div class="parent">
+    <div class="component1"> <%- include('../navegacao/header.ejs') %></div>
+    <div class="component2">
+
+      <div class="container_table">
+        <h1>Lista de Doacoes</h1>
+        <% if(doacoes.length>0) { %>
+          <table class="list-table">
+            <thead>
+              <tr>
+                <th>NIF</th>
+                <th>ESTADO</th>
+                <th>DATA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i=0; i<doacoes.length;i++) { %>
+                <tr>
+                  <td>
+                    <a href="#" class="nif-link" data-bs-toggle="modal"
+                      data-bs-target="#doacaoModal<%= doacoes[i]._id %>">
+                      <%= doacoes[i].nif%>
+                    </a>
+                  </td>
+                  <td>
+                    <%= doacoes[i].estadoDoacao%>
+                  </td>
+                  <td>
+                    <%= doacoes[i].dataDoacao.toLocaleString("pt-PT") %>
+                  </td>
+                </tr>
+                <% } %>
+            </tbody>
+          </table>
+          <% } else { %>
+            <div>Nenhuma Doacao encontrada.</div>
+            <% } %>
+      </div>
+
+      <!-- Modal para detalhes da doação -->
+      <% if (doacoes && doacoes.length> 0) { %>
+        <% doacoes.forEach(doacao=> { %>
+          <div class="modal fade" id="doacaoModal<%= doacao._id %>" tabindex="-1" aria-labelledby="doacaoModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="doacaoModalLabel">
+                    Detalhes da Doação - <%= doacao.dataDoacao.toLocaleString("pt-PT") %>
+                  </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <td>Nif</td>
+                        <td>:</td>
+                        <td>
+                          <%= doacao.nif %>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Estado</td>
+                        <td>:</td>
+                        <td>
+                          <%= doacao.estadoDoacao %>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Entidade Enviada</td>
+                        <td>:</td>
+                        <td>
+                          <%= doacao.nomeEntidade %>
+                        </td>
+                      </tr>
+                      <% if (doacao.pecaRoupa.length> 0) { %>
+                        <table class="table">
+                          <p>Detalhes das Pecas de Roupa:</p>
+                          <thead>
+                            <tr>
+                              <th scope="col">Tipo</th>
+                              <th scope="col">Qualidade</th>
+                              <th scope="col">Quantidade</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% doacao.pecaRoupa.forEach(item=> { %>
+                              <tr>
+                                <td>
+                                  <%= item.tipo %>
+                                </td>
+                                <td>
+                                  <%= item.qualidade %>
+                                </td>
+                                <td>
+                                  <%= item.quantidade %>
+                                </td>
+                              </tr>
+                              <% }); %>
+                          </tbody>
+                        </table>
+                        <% } else { %>
+                          <tr>
+                            <td colspan="3">Sem doações registadas</td>
+                          </tr>
+                          <% } %>
+                    </tbody>
+                  </table>
+                  <% if (doacao.estadoDoacao == "Pendente") { %>
+                  <form action="/utilizador/alterarEstado/<%= doacao._id%>"  method="POST">
+                    <input type="hidden" name="nif" value="<%= doacao.nif %>">
+                    <label for="estadoDoacao"> Alterar estado da Doacao:</label>
+                    <select name="estadoDoacao" id="estadoDoacao">
+                      <option value="Pendente">Pendente</option>
+                      <option value="Aprovado">Aprovado</option>
+                      <option value="Rejeitado">Rejeitado</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Atualizar</button>
+                  </form>
+                <%}%>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Fechar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% }); %>
+            <% } %>
+    </div>
+  </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const nifLinks = document.querySelectorAll('.nif-link');
+
+      nifLinks.forEach(link => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

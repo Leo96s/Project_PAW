@@ -1,0 +1,44 @@
+<div *ngIf="doacao" class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="doacaoModalLabel">
+                Detalhes da Doação - {{ doacao.dataDoacao | date: 'dd/MM/yyyy HH:mm' }}
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p><strong>NIF:</strong> {{ doacao.nif || 'N/A' }}</p>
+            <p><strong>Entidade:</strong> {{ doacao.nomeEntidade || 'N/A' }}</p>
+            <p><strong>Estado:</strong> {{ doacao.estadoDoacao }}</p>
+            <p><strong>Peças de Roupa:</strong></p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Qualidade</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Pontos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of doacao.pecaRoupa">
+                        <td>{{ item.tipo }}</td>
+                        <td>{{ item.qualidade }}</td>
+                        <td>{{ item.quantidade }}</td>
+                        <td>{{ item.pontos }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>Pontos: </strong>{{ doacao.totalPontos }}</p>
+            <p><strong>Imagens:</strong></p>
+            <div *ngIf="doacao.images?.length">
+                <img *ngFor="let image of doacao.images" src="http://localhost:3000/api/v1/i/get/{{ image }}"
+                    alt="Comprovativo" class="img-thumbnail" />
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+    </div>
+</div>

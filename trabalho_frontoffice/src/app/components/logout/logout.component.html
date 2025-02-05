@@ -1,0 +1,8 @@
+<div class="profile-pic" ngbDropdown>
+    <img class="img-perfil" src="http://localhost:3000/api/v1/i/get/{{ profilePic }}" alt="{{ profilePic }}"
+        id="dropdownBasic1" ngbDropdownToggle />
+    <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownBasic1">
+        <!-- Add your dropdown items here -->
+        <button class="dropdown-item" (click)="logout()">Logout</button>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista Utilizadores</title>
+  <link rel='stylesheet' href='/stylesheets/gestao_utilizadores.css' />
+</head>
+
+<body>
+  <div class="parent">
+    <div class="component1"> <%- include('navegacao/header.ejs') %></div>
+    <div class="component2">
+
+      <div class="container_table">
+        <h1>Lista de Utilizadores</h1>
+
+        <% if(utilizadores.length>0) { %>
+          <table class="list-table">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Tipo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i=0; i<utilizadores.length;i++) { %>
+                <% if(userPosition=="Funcionario" && (utilizadores[i].position=="Funcionario" ||
+                  utilizadores[i].position=="Admin" ) ){ %>
+                  <% }else{ %>
+                    <tr>
+                      <td><a href="/utilizador/show/<%= utilizadores[i]._id%>">
+                          <%= utilizadores[i].name%>
+                        </a></td>
+                      <td>
+                        <%= utilizadores[i].position%>
+                      </td>
+                    </tr>
+                    <% } %>
+                      <% } %>
+            </tbody>
+          </table>
+          <% } else { %>
+            <div>Nenhum utilizador encontrado.</div>
+            <% } %>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

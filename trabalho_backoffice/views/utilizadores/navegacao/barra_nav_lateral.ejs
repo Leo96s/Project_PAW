@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+    aria-controls="offcanvasScrolling">Opções</button>
+
+  <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasScrolling"
+    aria-labelledby="offcanvasScrolling">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasScrolling">Opções</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <nav class="nav flex-column">
+        <h3>Olá, <%= userName %>
+        </h3>
+        <a class="nav-link" href="/utilizador/minhas-informacoes">Minhas Informações</a>
+        <a class="nav-link" href="/utilizador/lista-utilizadores">Lista Utilizadores</a>
+        <a class="nav-link" href="/utilizador/create">Criar Utilizador</a>
+        <a class="nav-link" href="/utilizador/procurar">Procurar</a>
+        <a class="nav-link" href="/utilizador/doacoes">Gestão de Doações</a>
+        <a class="nav-link" href="/utilizador/listaDoacoes">Lista de Doações</a>
+        <a class="nav-link" href="/utilizador/criarDoacao">Registar Doação</a>
+        <a class="nav-link" href="/utilizador/dashboard">Dashboard </a>
+        <div class="logout">
+          <a class="nav-link" href="/auth/logout">Terminar Sessão</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</body>
+
+</html>

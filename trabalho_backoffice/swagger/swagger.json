@@ -1,0 +1,669 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Doacoes Roupa API",
+    "description": "REST API para Doações de Roupa"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Doacoes",
+      "description": "API para a gestão das doações no sistema"
+    },
+    {
+      "name": "Utilizadores",
+      "description": "API para a gestão dos utilizadores no sistema"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/a/register-doador": {
+      "post": {
+        "tags": ["Doadores"],
+        "description": "Criar novos doadores no sistema",
+        "parameters": [
+          {
+            "name": "doador",
+            "in": "body",
+            "description": "Doador que queremos criar",
+            "schema": {
+              "$ref": "#/definitions/Doador"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Novo Doador criado",
+            "schema": {
+              "$ref": "#/definitions/Doador"
+            }
+          },
+          "404": { "description": "Nif ou Email Repetido" },
+          "500": { "description": "Erro no Servidor" }
+        }
+      }
+    },
+    "/u/doador/{doadorId}": {
+      "parameters": [
+        {
+          "name": "doadorId",
+          "in": "path",
+          "required": true,
+          "description": "ID do doador que se pretende procurar",
+          "type": "string"
+        }
+      ],
+      "put": {
+        "summary": "Atualizar o doador a partir do ID do mesmo",
+        "tags": ["Doadores"],
+        "parameters": [
+          {
+            "name": "doador",
+            "in": "body",
+            "description": "Doador com as novas propriedades",
+            "schema": {
+              "$ref": "#/definitions/Doador"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "O doador foi atualizado",
+            "schema": {
+              "$ref": "#/definitions/Doador"
+            }
+          },
+          "404": { "description": "Nif ou Email Repetido" },
+          "500": { "description": "Erro no Servidor" }
+        },
+        "security": [
+          {
+            "utilizador_jwt_auth": []
+          }
+        ]
+      }
+    },
+    "/a/register-entidade": {
+      "post": {
+        "tags": ["Entidades"],
+        "description": "Criar novas entidades no sistema",
+        "parameters": [
+          {
+            "name": "entidade",
+            "in": "body",
+            "description": "Entidade que queremos criar",
+            "schema": {
+              "$ref": "#/definitions/Entidade"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Nova Entidade criada",
+            "schema": {
+              "$ref": "#/definitions/Entidade"
+            }
+          },
+          "404": { "description": "Nif ou Email Repetido" },
+          "500": { "description": "Erro no Servidor" }
+        }
+      }
+    },
+    "/u/entidades": {
+      "get": {
+        "tags": ["Entidades"],
+        "summary": "Obter todos as Entidades no sistema",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Entidade"
+            }
+          }
+        },
+        "security": [
+          {
+            "utilizador_jwt_auth": []
+          }
+        ]
+      }
+    },
+    "/u/entidade/{entidadeId}": {
+      "parameters": [
+        {
+          "name": "entidadeId",
+          "in": "path",
+          "required": true,
+          "description": "ID da entidade que se pretende procurar",
+          "type": "string"
+        }
+      ],
+      "put": {
+        "summary": "Atualizar a entidade a partir do ID da mesma",
+        "tags": ["Entidades"],
+        "parameters": [
+          {
+            "name": "entidade",
+            "in": "body",
+            "description": "Entidade com as novas propriedades",
+            "schema": {
+              "$ref": "#/definitions/Entidade"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A entidade foi atualizada",
+            "schema": {
+              "$ref": "#/definitions/Entidade"
+            }
+          },
+          "404": { "description": "Nif ou Email Repetido" },
+          "500": { "description": "Erro no Servidor" }
+        },
+        "security": [
+          {
+            "utilizador_jwt_auth": []
+          }
+        ]
+      }
+    },
+    "/d/doacoes": {
+      "post": {
+        "tags": ["Doacoes"],
+        "description": "Criar novas Doações no sistema",
+        "parameters": [
+          {
+            "name": "doacao",
+            "in": "body",
+            "description": "Doação que queremos criar",
+            "schema": {
+              "$ref": "#/definitions/Doacao"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Nova Doacao criado",
+            "schema": {
+              "$ref": "#/definitions/Doacao"
+            }
+          }
+        },
+        "security": [
+          {
+            "utilizador_jwt_auth": []
+          }
+        ]
+      },
+      "get": {
+        "tags": ["Doacoes"],
+        "summary": "Obter todas as Doações no sistema",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Doacao"
+            }
+          },
+          "security": [
+            {
+              "utilizador_jwt_auth": []
+            }
+          ]
+        }
+      }
+    },
+    "/d/doacoes/aprovadas": {
+      "get": {
+        "tags": ["Doacoes"],
+        "summary": "Obter todas as Doações no sistema",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Doacao"
+            }
+          },
+          "500": { "description": "Erro no Servidor" },
+          "security": [
+            {
+              "utilizador_jwt_auth": []
+            }
+          ]
+        }
+      }
+    },
+    "/d/doacoes/nif/{doacoesNIF}": {
+      "get": {
+        "tags": ["Doacoes"],
+        "summary": "Obter todas as Doações no doador com o Nif indicado",
+        "parameters": [
+          {
+            "name": "doacoesNIF",
+            "in": "path",
+            "required": true,
+            "description": "Nif do doador",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Doacao"
+            }
+          },
+          "400": { "description": "Nif não Fornecido" },
+          "404": { "description": "Nenhuma doação encontrada para este NIF" },
+          "security": [
+            {
+              "utilizador_jwt_auth": []
+            }
+          ]
+        }
+      }
+    },
+    "/d/doacoes/entidade/{nomeEntidade}": {
+      "get": {
+        "tags": ["Doacoes"],
+        "summary": "Obter todas as Doações no doador com a entidade indicada",
+        "parameters": [
+          {
+            "name": "nomeEntidade",
+            "in": "path",
+            "required": true,
+            "description": "Nome da Entidade",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Doacao"
+            }
+          },
+          "400": { "description": "Nome da Entidade não fornecido" },
+          "404": {
+            "description": "Nenhuma doação encontrada para este Nome de entidade"
+          },
+          "security": [
+            {
+              "utilizador_jwt_auth": []
+            }
+          ]
+        }
+      }
+    },
+    "/a/login": {
+      "post": {
+        "tags": ["Utilizadores"],
+        "summary": "Efetua o login do Utilizador no Sistema",
+        "description": "",
+        "operationId": "loginUser",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Objeto Login Criado",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação bem sucedida",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "404": {
+            "description": "O username/password dado é inválido"
+          },
+          "500": {
+            "description": "Erro no Servidor"
+          }
+        }
+      }
+    },
+    "/a/get-position": {
+      "get": {
+        "tags": ["Utilizadores"],
+        "summary": "Obter o tipo do Utilizador Autenticado",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "type": "string"
+          },
+          "404": { "description": "Utilizador não encontrado" },
+          "403": { "description": "Não Autorizado" },
+          "500": { "description": "Erro no Servidor" }
+        },
+        "security": [
+          {
+            "utilizador_jwt_auth": []
+          }
+        ]
+      }
+    },
+    "/u/profile": {
+      "get": {
+        "tags": ["Utilizadores"],
+        "summary": "Obter os dados do Utilizador Autenticado (Pode ser tanto do tipo Doador ou Entidade)",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "type": "string"
+          },
+          "404": { "description": "Utilizador não encontrado" },
+          "500": { "description": "Erro no Servidor" }
+        },
+        "security": [
+          {
+            "utilizador_jwt_auth": []
+          }
+        ]
+      }
+    },
+    "/u/promover/{id}": {
+      "post": {
+        "tags": ["Doadores"],
+        "description": "Atribui um código de Angariador ao Utilizador indicado pelo id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do doador que se pretende procurar",
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Código de angariador Atribuído",
+            "schema": {
+              "$ref": "#/definitions/Doador"
+            }
+          },
+          "404": { "description": "Doador não encontrado" },
+          "500": { "description": "Erro no Servidor" }
+        },
+        "security": [
+          {
+            "utilizador_jwt_auth": []
+          }
+        ]
+      }
+    },
+    "/u/resgatar-recompensa/{id}": {
+      "put": {
+        "tags": ["Doadores"],
+        "description": "Resgata um gift card para o doador",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do doador que se pretende procurar",
+            "type": "string"
+          },
+          {
+            "name": "cartao",
+            "in": "body",
+            "description": "Cartão que se pretende resgatar",
+            "schema": {
+              "$ref": "#/definitions/Cartao"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Código de angariador Atribuído",
+            "schema": {
+              "$ref": "#/definitions/Cartao"
+            }
+          },
+          "400": { "description": "Cartão não fornecido" }
+        },
+        "security": [
+          {
+            "utilizador_jwt_auth": []
+          }
+        ]
+      }
+    },
+    "/i/get/{path}": {
+      "get": {
+        "tags": ["Images"],
+        "summary": "Obter uma imagem",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "path",
+            "required": true,
+            "type": "string",
+            "description": "Caminho da Imagem"
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK" },
+          "403": { "description": "Acesso negado" }
+        }
+      }
+    },
+    "/i/upload-single": {
+      "post": {
+        "tags": ["Images"],
+        "summary": "Upload a single image",
+        "consumes": "multipart/form-data",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "path",
+            "required": true,
+            "type": "string",
+            "description": "Caminho da Imagem"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "File uploaded successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": { "type": "string" },
+                "filename": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "utilizador_jwt_auth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "x-access-token"
+    }
+  },
+  "definitions": {
+    "Cartao": {
+      "properties": {
+        "cartao": {
+          "required": ["quantia", "nome"],
+          "properties": {
+            "quantia": {
+              "type": "number"
+            },
+            "nome": {
+              "type": "string"
+            },
+            "codigo": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "Login": {
+      "required": ["email", "password"],
+      "properties": {
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Utilizador": {
+      "required": ["name", "email", "nif", "password", "position"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "nif": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "password": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        }
+      }
+    },
+    "Doador": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Utilizador"
+        },
+        {
+          "required": ["phone", "city", "address", "age", "gender", "image"],
+          "properties": {
+            "phone": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "address": {
+              "type": "string"
+            },
+            "age": {
+              "type": "number"
+            },
+            "gender": {
+              "type": "string"
+            },
+            "image": {
+              "type": "string"
+            },
+            "points": {
+              "type": "number",
+              "default": 0
+            }
+          }
+        }
+      ]
+    },
+    "Entidade": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Utilizador"
+        },
+        {
+          "required": [
+            "phone",
+            "city",
+            "address",
+            "missao",
+            "atividades",
+            "website",
+            "images"
+          ],
+          "properties": {
+            "phone": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "address": {
+              "type": "string"
+            },
+            "missao": {
+              "type": "string"
+            },
+            "atividades": {
+              "type": "string"
+            },
+            "website": {
+              "type": "string"
+            },
+            "images": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "estadoRegisto": {
+              "type": "string"
+            },
+            "administrador": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "Utilizadores": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Utilizador"
+      }
+    },
+    "Doacao": {
+      "required": ["nif", "pecaRoupa", "nomeEntidade"],
+      "properties": {
+        "nif": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "pecaRoupa": { "type": "array" },
+        "nomeEntidade": {
+          "type": "string"
+        },
+        "estadoDoacao": {
+          "type": "string"
+        },
+        "tipoRoupa": {
+          "type": "string"
+        },
+        "totalPontos": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}

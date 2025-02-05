@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registar Utilizador</title>
+  <link rel='stylesheet' href='/stylesheets/gestao_utilizadores.css' />
+</head>
+
+<body>
+  <div class="parent">
+    <div class="component1"> <%- include('navegacao/header.ejs') %></div>
+    <div class="component2">
+      <div class="container_table">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="procurar-tipo-tab" data-bs-toggle="tab"
+              data-bs-target="#procurar-tipo-tab-pane" type="button" role="tab" aria-controls="procurar-tipo-tab-pane"
+              aria-selected="true">
+              Procurar Por Tipo
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="procurar-nome-tab" data-bs-toggle="tab"
+              data-bs-target="#procurar-nome-tab-pane" type="button" role="tab" aria-controls="procurar-nome-pane"
+              aria-selected="false">
+              Procurar Por Nome
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="procurar-nif-tab" data-bs-toggle="tab" data-bs-target="#procurar-nif-tab-pane"
+              type="button" role="tab" aria-controls="procurar-nif-pane" aria-selected="false">
+              Procurar Por Nif
+            </button>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="procurar-tipo-tab-pane" role="tabpanel"
+            aria-labelledby="procurar-tipo-tab" tabindex="0">
+            <h1>Procurar por Tipo</h1>
+            <form action="/utilizador/procurar-tipo" method="post">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Tipo</td>
+                    <td>
+                      <select name="position">
+                        <option value="Doador">Doador</option>
+                        <% if(userPosition=='Admin' ) { %>
+                          <option value="Funcionario">Funcionário</option>
+                          <% } %>
+                            <option value="Entidade">Entidade</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><button type="submit">Procurar</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="procurar-nome-tab-pane" role="tabpanel" aria-labelledby="procurar-nome-tab"
+            tabindex="0">
+            <h1>Procurar por Nome</h1>
+            <form action="/utilizador/procurar-nome" method="post">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Nome</td>
+                    <td><input type="text" name="name" /></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><button type="submit">Procurar</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="procurar-nif-tab-pane" role="tabpanel" aria-labelledby="procurar-nif-tab"
+            tabindex="0">
+            <h1>Procurar por Nif</h1>
+            <form action="/utilizador/procurar-nif" method="post">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Nif</td>
+                    <td><input type="text" name="nif" /></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><button type="submit">Procurar</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>

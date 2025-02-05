@@ -1,0 +1,27 @@
+.img_perfil {
+  width: 100px;
+  height: 100px;
+}
+
+.expanded-image {
+  width: 100%;
+  height: auto;
+}
+
+.modal-body {
+  padding: 2px !important;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+.expanded-image {
+  transition: transform 500ms;
+  transform-origin: top;
+}
+
+input[type="checkbox"]:checked ~ label > .expanded-image {
+  transform: scale(2);
+  margin-top: -10px;
+}

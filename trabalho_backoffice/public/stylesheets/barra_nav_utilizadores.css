@@ -1,0 +1,116 @@
+.navbar {
+  z-index: 2;
+  width: 100%;
+  position: fixed;
+  padding: 0px;
+  border-bottom: 3px groove #c5b1a5;
+  flex-wrap: nowrap;
+  box-sizing: border-box;
+
+  div {
+    background-color: #bfac9f;
+  }
+}
+
+.nav-item {
+  transition: all 0.4s ease;
+}
+
+.nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.logo {
+  transition: all 0.4s ease;
+  border-right: 3px groove #c5b1a5;
+}
+
+.logo:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.logo img:hover {
+  transform: rotate(10deg);
+}
+
+.container-fluid img {
+  width: 50px;
+  height: 50px;
+}
+
+.collapse{
+  justify-content: space-between;
+}
+
+
+.profile img {
+  float: right;
+  border-radius: 50%;
+  border: 3px solid white;
+}
+
+.btn {
+  margin: 20px;
+  width: min-content;
+  float: right;
+  background-color: #bfac9f;
+  text-align: center;
+  border: 3px groove #c5b1a5;
+  transition: all 0.4s ease;
+  color: black;
+}
+
+.btn:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 3px groove #c5b1a5;
+  color: black;
+}
+
+.offcanvas {
+  background-color: #bfac9f;
+  border-left: 3px groove #c5b1a5;
+
+  a {
+    color: black;
+  }
+}
+
+.logout {
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 50px;
+}
+
+.dropdown button {
+  float: left;
+  margin: 0px;
+}
+
+.footer {
+  border-top: 3px groove #c5b1a5;
+  z-index: 2;
+  position: fixed;
+  bottom: 0;
+  padding-top: 5px;
+  padding-right: 40px;
+  text-align: right;
+  width: 100%;
+  background-color:  #bfac9f
+}
+
+.barra_lateral {
+  right: 0;
+  z-index: 1;
+  position: fixed;
+  padding-top: 20px;
+}
+
+.logout{
+  float:initial
+}
+
+@media screen and (max-width: 1000px) {
+  .btn {
+    margin-top: 50px;
+  }
+}

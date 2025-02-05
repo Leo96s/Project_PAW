@@ -1,0 +1,6 @@
+<div *ngIf="barChartDatasets.length!=0">
+        <h6>Doações nos Ultimos 3 Meses Rejeitadas</h6>
+        <canvas baseChart [type]="'bar'" [datasets]="barChartDatasets" [labels]="barChartLabels"
+                [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend">
+        </canvas>
+</div>

@@ -1,0 +1,270 @@
+<app-barra-navegacao></app-barra-navegacao>
+
+<div class="container">
+  <div *ngIf="entidade">
+    <div class="container_table">
+      <h1>Detalhes Entidade</h1>
+      <button class="btn btn-secondary" (click)="toggleEdit()">Editar</button>
+      <table *ngIf="!editing">
+        <tbody>
+          <tr>
+            <td>Imagem Perfil</td>
+            <td>:</td>
+            <td>
+              <app-visualizar-imagem *ngFor="let image of entidade.images" [image]="image"> </app-visualizar-imagem>
+            </td>
+          </tr>
+          <tr>
+            <td>Nome</td>
+            <td>:</td>
+            <td>{{ entidade.name }}</td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td>:</td>
+            <td>{{ entidade.email }}</td>
+          </tr>
+          <tr>
+            <td>Password</td>
+            <td>:</td>
+            <td>***********</td>
+          </tr>
+
+          <tr>
+            <td>Nif</td>
+            <td>:</td>
+            <td>
+              {{ entidade.nif }}
+            </td>
+          </tr>
+          <tr>
+            <td>Telemóvel</td>
+            <td>:</td>
+            <td>
+              {{ entidade.phone }}
+            </td>
+          </tr>
+          <tr>
+            <td>Missão</td>
+            <td>:</td>
+            <td>
+              {{ entidade.missao }}
+            </td>
+          </tr>
+          <tr>
+            <td>Atividades</td>
+            <td>:</td>
+            <td>
+              {{ entidade.atividades }}
+            </td>
+          </tr>
+          <tr>
+            <td>Website</td>
+            <td>:</td>
+            <td>
+              {{ entidade.website }}
+            </td>
+          </tr>
+          <tr>
+            <td>Cidade</td>
+            <td>:</td>
+            <td>
+              {{ entidade.city }}
+            </td>
+          </tr>
+          <tr>
+            <td>Morada</td>
+            <td>:</td>
+            <td>
+              {{ entidade.address }}
+            </td>
+          </tr>
+          <tr>
+            <td>Última Atualização</td>
+            <td>:</td>
+            <td>
+              {{ entidade.updated_at }}
+            </td>
+          </tr>
+          <tr>
+            <td>Data de Criação</td>
+            <td>:</td>
+            <td>
+              {{ entidade.created_at }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <form *ngIf="editing" #form="ngForm">
+        <div class="input-container">
+          <div class="inputbox">
+            <label class="form-label" for="foto">Foto Perfil</label>
+            <app-upload-files class="form-control" (filesUploaded)="onFilesUploaded($event)" [tempName]="entidade.name"
+              id="filesUpload"></app-upload-files>
+          </div>
+          <div class="inputbox">
+            <label class="form-label" for="name">Nome</label>
+            <input class="form-control" type="text" id="name" [(ngModel)]="entidade.name" name="name" required
+              minlength="2" #name="ngModel">
+
+            <div *ngIf="name.invalid && (name.dirty || name.touched)">
+              <div *ngIf="name.errors && name.errors['required']" class="alert alert-danger">
+                Nome é obrigatório.
+              </div>
+              <div *ngIf="name.errors && name.errors['minlength']" class="alert alert-danger">
+                Nome precisa ter pelo menos 2 caracteres.
+              </div>
+            </div>
+          </div>
+
+          <div class="inputbox">
+            <label class="form-label" for="email">Email</label>
+            <input class="form-control" type="email" id="email" [(ngModel)]="entidade.email" name="email" required email
+              #email="ngModel">
+
+            <div *ngIf="email.invalid && (email.dirty || email.touched)">
+              <div *ngIf="email.errors && email.errors['required']" class="alert alert-danger">
+                O Email é obrigatório.
+              </div>
+              <div *ngIf="email.errors && email.errors['email']" class="alert alert-danger">
+                Email inválido.
+              </div>
+            </div>
+          </div>
+
+          <div class="inputbox">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-control" type="password" id="password" [(ngModel)]="entidade.password" name="password"
+              required minlength="8" #password="ngModel" />
+
+            <div *ngIf="password.invalid && (password.dirty || password.touched)">
+              <div *ngIf="password.errors && password.errors['required']" class="alert alert-danger">
+                A password é obrigatória.
+              </div>
+              <div *ngIf="password.errors && password.errors['minlength']" class="alert alert-danger">
+                A password deve ter pelo menos 8 caracteres.
+              </div>
+            </div>
+          </div>
+
+          <div class="inputbox">
+            <label class="form-label" for="nif">NIF</label>
+            <input class="form-control" type="text" id="nif" [(ngModel)]="entidade.nif" name="nif" required
+              pattern="^\d{9}$" #nif="ngModel" />
+
+            <div *ngIf="nif.invalid && (nif.dirty || nif.touched)">
+              <div *ngIf="nif.errors && nif.errors['required']" class="alert alert-danger">
+                O NIF é obrigatório.
+              </div>
+              <div *ngIf="nif.errors && nif.errors['pattern']" class="alert alert-danger">
+                Por favor, insira um NIF válido com 9 dígitos.
+              </div>
+            </div>
+          </div>
+
+          <div class="inputbox">
+            <label class="form-label" for="phone">Telemóvel</label>
+            <input class="form-control" type="text" id="phone" [(ngModel)]="entidade.phone" name="phone" required
+              pattern="^\d{9}$" #phone="ngModel" />
+
+            <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+              <div *ngIf="phone.errors && phone.errors['required']" class="alert alert-danger">
+                O número de telemóvel é obrigatório.
+              </div>
+              <div *ngIf="phone.errors && phone.errors['pattern']" class="alert alert-danger">
+                Por favor, insira um número de telemóvel válido com 9 dígitos.
+              </div>
+            </div>
+          </div>
+
+          <div class="inputbox">
+            <label class="form-label" for="mission">Missão</label>
+            <input class="form-control" type="text" id="mission" [(ngModel)]="entidade.missao" name="mission" required
+              #mission="ngModel" />
+
+            <div *ngIf="mission.invalid && (mission.dirty || mission.touched)">
+              <div *ngIf="mission.errors && mission.errors['required']" class="alert alert-danger">
+                A missão é obrigatória.
+              </div>
+            </div>
+          </div>
+
+          <div class="inputbox">
+            <label class="form-label" for="atividades">Atividades</label>
+            <input class="form-control" type="text" id="atividades" [(ngModel)]="entidade.atividades" name="atividades"
+              required #atividades="ngModel" />
+
+            <div *ngIf="atividades.invalid && (atividades.dirty || atividades.touched)">
+              <div *ngIf="atividades.errors && atividades.errors['required']" class="alert alert-danger">
+                As atividades são obrigatórias.
+              </div>
+            </div>
+          </div>
+
+          <div class="inputbox">
+            <label class="form-label" for="city">Cidade</label>
+            <input class="form-control" type="text" id="city" [(ngModel)]="entidade.city" name="city" required
+              minlength="2" #city="ngModel" />
+
+            <div *ngIf="city.invalid && (city.dirty || city.touched)">
+              <div *ngIf="city.errors && city.errors['required']" class="alert alert-danger">
+                A cidade é obrigatória.
+              </div>
+              <div *ngIf="city.errors && city.errors['minlength']" class="alert alert-danger">
+                A cidade deve ter pelo menos 2 caracteres.
+              </div>
+            </div>
+          </div>
+
+          <div class="inputbox">
+            <label class="form-label" for="address">Morada</label>
+            <input class="form-control" type="text" id="address" [(ngModel)]="entidade.address" name="address" required
+              minlength="2" #address="ngModel" />
+
+            <div *ngIf="address.invalid && (address.dirty || address.touched)">
+              <div *ngIf="address.errors && address.errors['required']" class="alert alert-danger">
+                A morada é obrigatória.
+              </div>
+              <div *ngIf="address.errors && address.errors['minlength']" class="alert alert-danger">
+                A morada deve ter pelo menos 2 caracteres.
+              </div>
+            </div>
+          </div>
+
+          <div class="inputbox">
+            <label class="form-label" for="website">Website</label>
+            <input class="form-control" type="url" id="website" [(ngModel)]="entidade.website" name="website" required
+              pattern="https?://.+" #website="ngModel"
+              title="Por favor, insira um URL válido que comece com http:// ou https://." />
+
+            <div *ngIf="website.invalid && (website.dirty || website.touched)">
+              <div *ngIf="website.errors && website.errors['required']" class="alert alert-danger">
+                O website é obrigatório.
+              </div>
+              <div *ngIf="website.errors && website.errors['pattern']" class="alert alert-danger">
+                Por favor, insira um URL válido que comece com http:// ou https://.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" type="button" [disabled]="form.invalid ||  entidade.images === undefined"
+          (click)="saveChanges()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-add"
+            viewBox="0 0 16 16">
+            <path
+              d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
+            <path
+              d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" />
+          </svg>Editar
+        </button>
+
+        @if (this.updateError!=='') {
+        <ngb-alert class="error" style="margin-top: 10px;" type="danger"
+          [dismissible]="false"><strong>{{this.updateError}}</strong></ngb-alert>
+        }
+      </form>
+    </div>
+  </div>
+  <p *ngIf="!entidade">O utilizador não é uma Entidade!!!</p>
+</div>

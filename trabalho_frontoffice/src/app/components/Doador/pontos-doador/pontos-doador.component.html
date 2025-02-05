@@ -1,0 +1,33 @@
+<h1>Zona de Pontos</h1>
+<p>Total de pontos: {{ doador ? doador.points : 'N/A' }}</p>
+
+<h2>Histórico de Doações</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Data</th>
+      <th scope="col">Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let doacao of doacoes">
+      <td>
+        <a href="#" data-bs-toggle="modal" [attr.data-bs-target]="'#doacaoModal' + doacao._id">
+          {{ doacao.dataDoacao | date: 'dd/MM/yyyy HH:mm' }}
+        </a>
+      </td>
+      <td [ngClass]="{'estado-pendente': doacao.estadoDoacao === 'Pendente'}">
+        {{ doacao.estadoDoacao }}
+      </td>
+    </tr>
+    <tr *ngIf="doacoes?.length === 0">
+      <td>Sem doações registadas</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal para detalhes da doação -->
+<div *ngFor="let doacao of doacoes" class="modal fade" [id]="'doacaoModal' + doacao._id" tabindex="-1"
+  aria-labelledby="doacaoModalLabel" aria-hidden="true">
+  <app-modal-doacao [doacao]="doacao"></app-modal-doacao>
+</div>

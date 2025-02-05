@@ -1,0 +1,25 @@
+<app-barra-navegacao> </app-barra-navegacao>
+<div class="container">
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <li [ngbNavItem]="1">
+      <button ngbNavLink>Minhas Infomacoes</button>
+      <ng-template ngbNavContent>
+        <app-detalhes-doador></app-detalhes-doador>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <button ngbNavLink>Pontos</button>
+      <ng-template ngbNavContent>
+        <app-pontos-doador></app-pontos-doador>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="3">
+      <button ngbNavLink>Gastar Pontos</button>
+      <ng-template ngbNavContent>
+        <app-gastar-pontos></app-gastar-pontos>
+      </ng-template>
+    </li>
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+</div>

@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Gift Card - {{data.nome}}</h2>
+<mat-dialog-content>
+    <p>Quantia: {{data.quantia/10}}€</p>
+    <p>Código: {{data.codigo}}</p>
+
+    <div class="alert alert-danger">Guarde o código, pois este não será armazenado no nosso servidor.</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>OK</button>
+</mat-dialog-actions>

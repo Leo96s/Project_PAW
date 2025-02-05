@@ -1,0 +1,6 @@
+<div *ngIf="pieChartDatasets.length!=0">
+  <h6>Doações por Entidade</h6>
+  <canvas baseChart [type]="'pie'" [datasets]="pieChartDatasets" [labels]="pieChartLabels" [options]="pieChartOptions"
+    [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+  </canvas>
+</div>

@@ -1,0 +1,46 @@
+.filtros {
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .filtros h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+  
+  .filtros-itens {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .filtros-itens div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .filtros label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  
+  .filtros input, .filtros select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .filtros input[type="date"] {
+    max-width: 200px;
+  }
+  
+  .filtros select {
+    max-width: 150px;
+  }
+  
+  
+  

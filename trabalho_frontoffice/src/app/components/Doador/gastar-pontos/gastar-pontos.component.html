@@ -1,0 +1,124 @@
+<h1>Pontos: {{points}}</h1>
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="col">
+        <div class="card h-100">
+            <img src="https://th.bing.com/th/id/OIP.Gxe1NaqCy4a8p5oJJmoNAQHaHa?w=177&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Gift Card Steam</h5>
+                <p class="card-text">Cartão de X euros de Steam que pode ser comprado com pontos.</p>
+                <div class="btn-group">
+                    <form>
+                        <mat-form-field class="responsive-mat-select">
+                            <mat-select placeholder="Quantia" [(ngModel)]="cartoes[0].quantia" required name="quantia"
+                                #quantia="ngModel">
+                                <mat-option [disabled]="points < quantia.value" *ngFor="let quantia of quantias"
+                                    [value]="quantia.value">
+                                    {{quantia.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <p> Valor Selecionado: {{cartoes[0].quantia}}€ </p>
+
+                        <button [disabled]="cartoes[0].quantia==0" type="button" class="btn"
+                            (click)="resgatarCartao(0)">
+                            Resgatar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <img src="https://th.bing.com/th/id/OIP.PMU8x6ZOgSQDmN6cxBLTeQHaFj?w=252&h=189&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Gift Card Amazon</h5>
+                <p class="card-text">Cartão de X euros de Amazon que pode ser comprado com pontos.</p>
+                <div class="btn-group">
+                    <form>
+                        <mat-form-field class="responsive-mat-select">
+                            <mat-select placeholder="Quantia" [(ngModel)]="cartoes[1].quantia" required name="quantia"
+                                #quantia="ngModel">
+                                <mat-option [disabled]="points < quantia.value" *ngFor="let quantia of quantias"
+                                    [value]="quantia.value">
+                                    {{quantia.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <p> Valor Selecionado: {{cartoes[1].quantia}}€ </p>
+
+                        <button [disabled]="cartoes[1].quantia==0" type="button" class="btn"
+                            (click)="resgatarCartao(1)">
+                            Resgatar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <img src="https://th.bing.com/th/id/OIP.YWbxxXaiA5PwPiorLElYTwAAAA?w=202&h=149&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Gift Card Continente</h5>
+                <p class="card-text">Cartão de X euros de Continente que pode ser comprado com pontos.</p>
+                <div class="btn-group">
+                    <form>
+                        <mat-form-field class="responsive-mat-select">
+                            <mat-select placeholder="Quantia" [(ngModel)]="cartoes[2].quantia" required name="quantia"
+                                #quantia="ngModel">
+                                <mat-option [disabled]="points < quantia.value" *ngFor="let quantia of quantias"
+                                    [value]="quantia.value">
+                                    {{quantia.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <p> Valor Selecionado: {{cartoes[2].quantia}}€ </p>
+
+                        <button [disabled]="cartoes[2].quantia==0" type="button" class="btn"
+                            (click)="resgatarCartao(2)">
+                            Resgatar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <img src="https://th.bing.com/th/id/OIP.vvM7VZFSPV4PSEX7eTfuhAHaHa?rs=1&pid=ImgDetMain" class="card-img-top"
+                alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Gift Card Spotify</h5>
+                <p class="card-text">Cartão de X euros de Spotify que pode ser comprado com pontos.</p>
+                <div class="btn-group">
+                    <form>
+                        <mat-form-field class="responsive-mat-select">
+                            <mat-select placeholder="Quantia" [(ngModel)]="cartoes[3].quantia" required name="quantia"
+                                #quantia="ngModel">
+                                <mat-option [disabled]="points < quantia.value" *ngFor="let quantia of quantias"
+                                    [value]="quantia.value">
+                                    {{quantia.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <p> Valor Selecionado: {{cartoes[3].quantia}}€ </p>
+
+                        <button [disabled]="cartoes[3].quantia==0" type="button" class="btn"
+                            (click)="resgatarCartao(3)">
+                            Resgatar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

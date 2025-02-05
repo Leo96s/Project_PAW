@@ -1,0 +1,22 @@
+<div class="body">
+  <section>
+    <div class="">
+      <h1>Login</h1>
+      <div class="inputbox">
+        <ion-icon name="mailoutline"></ion-icon>
+        <input type="email" placeholder="Email" [(ngModel)]="email" required />
+        <label for="">Email</label>
+      </div>
+      <div class="inputbox">
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        <input type="password" placeholder="Password" [(ngModel)]="password" type="password" required />
+        <label for="">Password</label>
+      </div>
+      <button (click)="login()">Login</button>
+
+      @if (this.loginError!=='') {
+      <ngb-alert style="margin-top: 20px;" class="error" type="danger" [dismissible]="false"><strong>{{this.loginError}}</strong></ngb-alert>
+      }
+    </div>
+  </section>
+</div>

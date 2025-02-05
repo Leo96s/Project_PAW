@@ -1,0 +1,32 @@
+<app-barra-navegacao></app-barra-navegacao>
+
+<div class="container">
+    <h1>Página Utilizador</h1>
+    <h4>Aqui é possível aceder a todas a funcionalidades do Utilizador</h4>
+    <br>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img src="assets/images/card_1.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Lista de Doações</h5>
+                    <p class="card-text">Lista de doações feitas para a Entidade.</p>
+                    <a (click)="listaDoacoes()" class="btn btn-primary">Aceder</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img src="assets/images/card_2.jpg"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Dashboard</h5>
+                    <p class="card-text">Dashboard com Diversos Dados Estatísticos.</p>
+                    <a (click)="dashboards()" class="btn btn-primary">Aceder</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

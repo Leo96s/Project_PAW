@@ -1,0 +1,126 @@
+* {
+    box-sizing: border-box; /* Add this */
+    font-family: "poppins", sans-serif;
+  }
+  
+  .parent {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #efefef;
+  }
+  
+  .component2 {
+    padding-top: 70px;
+    flex-grow: 1;
+  
+    .container_table {
+      margin-left: 10%;
+      margin-right: 10%;
+      background-color: #efefef;
+      width: 80%;
+      border-radius: 6px;
+      height: inherit;
+    }
+  
+    .container_table .aceitar {
+      border: solid 1px #aabf5c;
+      background-color: #00ae4d;
+      border-radius: 6px;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin: 20px 0;
+      padding: 10px 20px;
+    }
+  
+    .container_table .rejeitar {
+      border: solid 1px #cb2027;
+      background-color: #dd4b39;
+      border-radius: 6px;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin: 10px 0;
+      padding: 10px 20px;
+    }
+  
+    .container_table table {
+      width: 100%;
+    }
+  
+    .container_table table tr td {
+      padding: 5px;
+    }
+  
+    .container_table table tr td input,
+    .container_table table tr td textarea,
+    .container_table table tr td select {
+      border: solid 1px #dddddd;
+      padding: 5px 10px;
+      border-radius: 6px;
+      width: 100%;
+      color: #777777;
+    }
+  
+    .container_table table tr td button {
+      border: solid 1px #aabf5c;
+      background-color: #00ae4d;
+      border-radius: 6px;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin: 10px 0;
+      padding: 10px 20px;
+    }
+  
+    .container_table .list-table {
+      width: 100%;
+      border: solid 2px #dddddd;
+      border-spacing: 0;
+    }
+  
+    .container_table .list-table th {
+      border-bottom: solid 2px #dddddd;
+    }
+  
+    a {
+      color: #00b7ff;
+    }
+  }
+  
+  button {
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    background-color: rgba(255, 255, 255, 1);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.4s ease;
+  }
+  
+  button,
+  .container_table .rejeitar,
+  .container_table .aceitar {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  button:hover::after,
+  .container_table .rejeitar:hover::after,
+  .container_table .aceitar:hover::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.2; /* Ajuste a opacidade para escurecer a cor do botão */
+  }
+  
+  @media screen and (max-width: 1000px) {
+    .container_table {
+      margin-top: 20px;
+    }
+  }

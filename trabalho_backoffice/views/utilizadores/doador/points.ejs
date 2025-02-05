@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Zona de Pontos</h1>
+    <p>Total de pontos: <%=  utilizador ? utilizador.points : 'N/A' %></p>
+
+    <h2>Histórico de Doações</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (doacoes && doacoes.length > 0) { %> 
+          <% doacoes.forEach(doacao => { %>
+            <tr>
+              <td>
+                <a
+                  href="#"
+                  data-bs-toggle="modal"
+                  data-bs-target="#doacaoModal<%= doacao._id %>"
+                ><%= doacao.dataDoacao.toLocaleString("pt-PT")%></a>
+              </td>
+            </tr>
+          <% }); %> 
+        <% } else { %>
+          <tr>
+            <td>Sem doações registadas</td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+
+    <!-- Modal para detalhes da doação -->
+    <% if (doacoes && doacoes.length > 0) { %> 
+      <% doacoes.forEach(doacao => { %>
+        <div
+          class="modal fade"
+          id="doacaoModal<%= doacao._id %>"
+          tabindex="-1"
+          aria-labelledby="doacaoModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="doacaoModalLabel">
+                  Detalhes da Doação - <%= doacao.dataDoacao.toLocaleString("pt-PT") %>
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <p>Entidade Enviada: <%= doacao.nomeEntidade %></p> <!-- Exibir o nome da entidade -->
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Tipo</th>
+                      <th scope="col">Qualidade</th>
+                      <th scope="col">Quantidade</th>
+                      <th scope="col">Pontos</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% doacao.pecaRoupa.forEach(item => { %>
+                      <tr>
+                        <td><%= item.tipo %></td>
+                        <td><%= item.qualidade %></td>
+                        <td><%= item.quantidade %></td>
+                        <td><%= item.pontos %></td>
+                      </tr>
+                    <% }); %>
+                  </tbody>
+                </table>
+                <p>Pontos: <%= doacao.totalPontos %></p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Fechar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% }); %> 
+    <% } %>
+</body>
+</html>

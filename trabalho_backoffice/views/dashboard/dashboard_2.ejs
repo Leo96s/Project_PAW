@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="metric" id="metric2">
+    <script>
+      var trace1 = {
+        type: "bar",
+        x: JSON.parse('<%- JSON.stringify(tipo[0].tipo) %>'),
+        y: JSON.parse(' <%- JSON.stringify(tipo[0].quantidades) %>'),
+        marker: {
+          color: "#C8A2C8",
+          opacity: 0.7,
+        },
+      };
+
+      var data = [trace1];
+
+      var layout = {
+        title: "Quantidade por peca de roupa ",
+        xaxis: {
+          tickangle: -45
+        },
+        barmode: 'group',
+      };
+
+      var config = { responsive: true };
+
+      Plotly.newPlot("metric2", data, layout, config);
+    </script>
+  </div>
+</body>
+
+</html>

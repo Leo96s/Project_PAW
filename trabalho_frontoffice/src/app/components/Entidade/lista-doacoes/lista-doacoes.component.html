@@ -1,0 +1,65 @@
+<!-- Barra de navegação -->
+<app-barra-navegacao></app-barra-navegacao>
+
+<div class="container">
+  <!-- Título principal da página -->
+  <h1>Lista de Doações</h1>
+
+  <!-- Seção de filtros -->
+  <div class="filtros">
+    <h2>Filtros</h2>
+    <div class="filtros-itens">
+      <div>
+        <label for="filtroNIF">NIF:</label>
+        <input type="text" id="filtroNIF" [(ngModel)]="filtroNIF" (ngModelChange)="filtrarDoacoes()">
+      </div>
+      <div>
+        <label for="filtroData">Data:</label>
+        <input type="date" id="filtroData" placeholder="dd-mm-yyyy" [(ngModel)]="filtroData"
+          (ngModelChange)="filtrarDoacoes()">
+      </div>
+      <div>
+        <label for="filtroEstado">Estado:</label>
+        <select id="filtroEstado" [(ngModel)]="filtroEstado" (ngModelChange)="filtrarDoacoes()">
+          <option value="">Todos</option>
+          <option value="Pendente">Pendente</option>
+          <option value="Aprovado">Aprovado</option>
+          <option value="Rejeitado">Rejeitado</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lista de Doações -->
+  <h2>Doações Registadas</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">NIF</th>
+        <th scope="col">Data</th>
+        <th scope="col">Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let doacao of filteredDoacoes">
+        <td>
+          <!-- Link para abrir o modal com detalhes da doação -->
+          <a href="#" data-bs-toggle="modal" [attr.data-bs-target]="'#doacaoModal' + doacao._id">
+            {{ doacao.nif || 'N/A' }}
+          </a>
+        </td>
+        <td>{{ doacao.dataDoacao ? (doacao.dataDoacao | date:'dd/MM/yyyy') : 'N/A' }}</td>
+        <td>{{ doacao.estadoDoacao }}</td>
+      </tr>
+      <tr *ngIf="filteredDoacoes?.length === 0">
+        <td colspan="4">Nenhuma doação registrada</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modais para detalhes das doações -->
+  <div *ngFor="let doacao of filteredDoacoes" class="modal fade" [id]="'doacaoModal' + doacao._id" tabindex="-1"
+    aria-labelledby="doacaoModalLabel" aria-hidden="true">
+    <app-modal-doacao [doacao]="doacao"></app-modal-doacao>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/stylesheets/dashboard.css" />
+  <link rel="stylesheet" href="/stylesheets/gestao_utilizadores.css">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+  <div class="parent">
+    <div class="component1">
+      <%- include('../utilizadores/navegacao/header.ejs') %>
+    </div>
+    <div class="component2">
+      <div class="container_table">
+        <div class="horizontal_column">
+          <%- include('dashboard_1.ejs') %>
+            <%- include('dashboard_2.ejs') %>
+              <%- include('dashboard_3.ejs') %>
+                <%- include('dashboard_4.ejs') %>
+                  <%- include('dashboard_5.ejs') %>
+
+        </div>
+        <script>
+          window.dispatchEvent(new Event('resize'));
+        </script>
+      </div>
+    </div>
+</body>
+
+</html>

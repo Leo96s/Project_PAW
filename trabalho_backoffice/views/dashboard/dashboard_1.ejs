@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="metric" id="metric1">
+    <script>
+      var data = [
+        {
+          type: "pie",
+          values: JSON.parse(' <%- JSON.stringify(locais[0].quantidades) %>'),
+          labels: JSON.parse(' <%- JSON.stringify(locais[0].names) %>'),
+          textinfo: "label+percent",
+          insidetextorientation: "radial",
+        },
+      ];
+
+      var layout =
+      {
+        title: 'Doações por Local',
+      };
+
+      var config = { responsive: true };
+
+      Plotly.newPlot("metric1", data, layout, config);
+    </script>
+  </div>
+</body>
+
+</html>

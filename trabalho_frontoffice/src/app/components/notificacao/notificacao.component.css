@@ -1,0 +1,16 @@
+.sino {
+    float: right;
+    padding: 2px;
+    margin-right: 20px;
+  }
+  
+  .dropdown-menu{
+    margin-left: -200px;
+  }
+  
+  @media screen and (max-width: 1000px) {
+    .dropdown-menu{
+      left:0;
+      margin-left: 0px;
+    }
+  }

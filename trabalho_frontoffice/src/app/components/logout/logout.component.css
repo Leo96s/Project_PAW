@@ -1,0 +1,16 @@
+.profile-pic {
+    float: right;
+    padding: 2px;
+    margin-right: 10px;
+  }
+  
+  img {
+    border: solid black 1px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .dropdown-menu{
+    margin-left: -100px;
+  }

@@ -1,0 +1,30 @@
+<div class="filtros">
+  <h2>Filtros</h2>
+  <div class="filtros-itens">
+    <div>
+      <label for="nome">Nome</label>
+      <input
+        id="nome"
+        type="text"
+        class="form-control"
+        placeholder="Nome"
+        [(ngModel)]="filtros.nome"
+        name="nome"
+        (ngModelChange)="aplicarFiltros()"
+      />
+    </div>
+    <div>
+      <label for="cidade">Cidade</label>
+      <input
+        id="cidade"
+        type="text"
+        class="form-control"
+        placeholder="Cidade"
+        [(ngModel)]="filtros.cidade"
+        name="cidade"
+        (ngModelChange)="aplicarFiltros()"
+      />
+    </div>
+    <div></div>
+  </div>
+</div>

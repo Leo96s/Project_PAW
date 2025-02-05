@@ -1,0 +1,13 @@
+<ng-template #content let-modal>
+    <div class="modal-content">
+        <div class="modal-body">
+            <input type="checkbox" id="zoomCheck">
+            <label for="zoomCheck">
+                <img class="expanded-image" src="http://localhost:3000/api/v1/i/get/{{ image }}" alt="{{ image }}" />
+            </label>
+        </div>
+    </div>
+</ng-template>
+
+<img class="img_perfil" src="http://localhost:3000/api/v1/i/get/{{ image }}" alt="{{ image }}"
+    (click)="open(content)" />
