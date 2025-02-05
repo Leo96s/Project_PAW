@@ -69,4 +69,10 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
+const port = process.env.PORT || 3000; // Define a porta do servidor
+app.listen(port, () => {
+  console.log(`Servidor rodando em http://localhost:${port}`);
+});
+
+
 module.exports = app;
